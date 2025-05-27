@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.4.5
+    container_name: library_mysql
+    ports:
+      - "3306:3306"
+    command: mysqld --character_set_server=utf8mb4 --collation-server=utf8mb4_bin --slow_query_log=1 --log_output=TABLE --long_query_time=0.5 --local-infile=1 --max_allowed_packet=512M
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: library
+      MYSQL_USER: develop
+      MYSQL_PASSWORD: password
+      TZ: 'Asia/Tokyo'
