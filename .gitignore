@@ -39,7 +39,6 @@ out/
 ### Kotlin ###
 .kotlin
 .DS_Store
-docsify-system-docs
 
 ### Large data files ###
 src/main/resources/books.tsv
