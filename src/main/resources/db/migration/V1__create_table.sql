@@ -41,6 +41,7 @@ CREATE TABLE 利用申請イベント
     利用申請イベントID VARCHAR(26) PRIMARY KEY,
     利用申請ID         VARCHAR(26) NOT NULL,
     利用申請ステータス VARCHAR(50) NOT NULL,
+    イベント発生日時 DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (利用申請ID) REFERENCES 利用申請 (利用申請ID)
 );
 
@@ -193,6 +194,7 @@ CREATE TABLE 蔵書イベント
     蔵書イベントID VARCHAR(26) PRIMARY KEY,
     蔵書ID         VARCHAR(26) NOT NULL,
     ステータス     VARCHAR(50) NOT NULL,
+    イベント発生日時 DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (蔵書ID) REFERENCES 蔵書 (蔵書ID)
 );
 
@@ -229,6 +231,7 @@ CREATE TABLE 貸出イベント
     貸出イベントID VARCHAR(26) PRIMARY KEY,
     貸出ID         VARCHAR(26) NOT NULL,
     貸出ステータス VARCHAR(50) NOT NULL,
+    イベント発生日時 DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (貸出ID) REFERENCES 貸出 (貸出ID)
 );
 
@@ -293,6 +296,7 @@ CREATE TABLE 予約イベント
     予約イベントID VARCHAR(26) PRIMARY KEY,
     予約ID         VARCHAR(26) NOT NULL,
     予約ステータス VARCHAR(50) NOT NULL,
+    イベント発生日時 DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (予約ID) REFERENCES 予約 (予約ID)
 );
 
@@ -310,6 +314,7 @@ CREATE TABLE 予約申込
 CREATE TABLE 予約キャンセル
 (
     予約イベントID VARCHAR(26) PRIMARY KEY,
+    予約キャンセル日時     DATE        NOT NULL,
     FOREIGN KEY (予約イベントID) REFERENCES 予約イベント (予約イベントID)
 );
 
@@ -372,6 +377,7 @@ CREATE TABLE 相互貸渡イベント
     相互貸渡イベントID VARCHAR(26) PRIMARY KEY,
     相互貸渡ID         VARCHAR(26) NOT NULL,
     相互貸渡ステータス VARCHAR(50) NOT NULL,
+    イベント発生日時 DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (相互貸渡ID) REFERENCES 相互貸渡 (相互貸渡ID)
 );
 

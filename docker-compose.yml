@@ -3,12 +3,20 @@ services:
   mysql:
     image: mysql:8.4.5
     container_name: library_mysql
+    deploy:
+      resources:
+        limits:
+          memory: 2G
     ports:
       - "3306:3306"
-    command: mysqld --character_set_server=utf8mb4 --collation-server=utf8mb4_bin --slow_query_log=1 --log_output=TABLE --long_query_time=0.5 --local-infile=1 --max_allowed_packet=512M
+    command: mysqld --character_set_server=utf8mb4 --collation-server=utf8mb4_unicode_ci --slow_query_log=1 --log_output=TABLE --long_query_time=0.5 --local-infile=1 --max_allowed_packet=512M --secure-file-priv=/docker-entrypoint-initdb.d/ --innodb_buffer_pool_size=1536M --innodb_log_file_size=256M --innodb_log_buffer_size=64M
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: library
       MYSQL_USER: develop
       MYSQL_PASSWORD: password
       TZ: 'Asia/Tokyo'
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
